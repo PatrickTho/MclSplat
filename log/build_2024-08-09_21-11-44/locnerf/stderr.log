@@ -1,0 +1,5 @@
+  File "/home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/utils.py", line 356
+    """
+       ^
+SyntaxError: (unicode error) 'utf-8' codec can't decode byte 0xfc in position 36: invalid start byte
+

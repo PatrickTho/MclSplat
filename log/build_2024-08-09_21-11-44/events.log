@@ -1,0 +1,84 @@
+[0.000000] (-) TimerEvent: {}
+[0.000072] (locnerf) JobQueued: {'identifier': 'locnerf', 'dependencies': OrderedDict()}
+[0.000108] (locnerf) JobStarted: {'identifier': 'locnerf'}
+[0.099549] (-) TimerEvent: {}
+[0.199782] (-) TimerEvent: {}
+[0.300068] (-) TimerEvent: {}
+[0.400370] (-) TimerEvent: {}
+[0.500898] (-) TimerEvent: {}
+[0.601377] (-) TimerEvent: {}
+[0.701881] (-) TimerEvent: {}
+[0.802231] (-) TimerEvent: {}
+[0.814857] (locnerf) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', 'build/locnerf', 'build', '--build-base', '/home/student/catkin_ws/src/locnerf/build/locnerf/build', 'install', '--record', '/home/student/catkin_ws/src/locnerf/build/locnerf/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/student/catkin_ws/src/locnerf', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'CONDA_PROMPT_MODIFIER': '(nerfstudio)', 'USER': 'student', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/student', 'CONDA_SHLVL': '7', 'OLDPWD': '/home/student/catkin_ws', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '13784', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1001/bus', 'COLORTERM': 'truecolor', '_CE_M': '', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'COLCON_PREFIX_PATH': '/home/student/catkin_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'student', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'USERNAME': 'student', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', '_CE_CONDA': '', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '3', 'PATH': '/opt/ros/humble/bin:/home/student/anaconda3/envs/nerfstudio/bin:/home/student/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/student/Luxonis/depthai/entrypoint', 'SESSION_MANAGER': 'local/DeepLearning:@/tmp/.ICE-unix/13760,unix/DeepLearning:/tmp/.ICE-unix/13760', 'FASTRTPS_DEFAULT_PROFILES_FILE': '/etc/turtlebot4_discovery/fastdds_discovery_super_client.xml', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/fa4f814a_8c38_4153_939f_c490ce99a6c1', 'XDG_RUNTIME_DIR': '/run/user/1001', 'DISPLAY': ':2', 'LANG': 'de_DE.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'CONDA_PREFIX_1': '/home/student/anaconda3', 'RMW_IMPLEMENTATION': 'rmw_fastrtps_cpp', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1001/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.110', 'CONDA_PREFIX_2': '/home/student/anaconda3/envs/locnerf_new', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1001/keyring/ssh', 'ROS_DOMAIN_ID': '0', 'AMENT_PREFIX_PATH': '/home/student/catkin_ws/install/test_package:/home/student/catkin_ws/install/locnerf:/opt/ros/humble', 'CONDA_PYTHON_EXE': '/home/student/anaconda3/bin/python', 'CONDA_PREFIX_3': '/home/student/anaconda3/envs/deep_learning', 'SHELL': '/bin/bash', 'CONDA_PREFIX_4': '/home/student/anaconda3/envs/locnerf', 'ROS_DISCOVERY_SERVER': '192.168.0.227:11811', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'CONDA_PREFIX_5': '/home/student/anaconda3', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CONDA_DEFAULT_ENV': 'nerfstudio', 'CONDA_PREFIX_6': '/home/student/anaconda3/envs/locnerf', 'GPG_AGENT_INFO': '/run/user/1001/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/student/catkin_ws/src/locnerf/build/locnerf', 'LC_ALL': 'de_DE.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'CONDA_EXE': '/home/student/anaconda3/bin/conda', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/student/catkin_ws/src/locnerf/build/locnerf/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages:/home/student/catkin_ws/install/test_package/lib/python3.10/site-packages:/home/student/catkin_ws/install/locnerf/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'CONDA_PREFIX': '/home/student/anaconda3/envs/nerfstudio', 'COLCON': '1', 'VTE_VERSION': '6800'}, 'shell': False}
+[0.902335] (-) TimerEvent: {}
+[0.942859] (locnerf) StdoutLine: {'line': b'running egg_info\n'}
+[0.943084] (locnerf) StdoutLine: {'line': b'creating build/locnerf/locnerf.egg-info\n'}
+[0.943227] (locnerf) StdoutLine: {'line': b'writing build/locnerf/locnerf.egg-info/PKG-INFO\n'}
+[0.943291] (locnerf) StdoutLine: {'line': b'writing dependency_links to build/locnerf/locnerf.egg-info/dependency_links.txt\n'}
+[0.943322] (locnerf) StdoutLine: {'line': b'writing entry points to build/locnerf/locnerf.egg-info/entry_points.txt\n'}
+[0.943450] (locnerf) StdoutLine: {'line': b'writing requirements to build/locnerf/locnerf.egg-info/requires.txt\n'}
+[0.943511] (locnerf) StdoutLine: {'line': b'writing top-level names to build/locnerf/locnerf.egg-info/top_level.txt\n'}
+[0.943540] (locnerf) StdoutLine: {'line': b"writing manifest file 'build/locnerf/locnerf.egg-info/SOURCES.txt'\n"}
+[0.944270] (locnerf) StdoutLine: {'line': b"reading manifest file 'build/locnerf/locnerf.egg-info/SOURCES.txt'\n"}
+[0.944331] (locnerf) StdoutLine: {'line': b"adding license file 'LICENSE'\n"}
+[0.944568] (locnerf) StdoutLine: {'line': b"writing manifest file 'build/locnerf/locnerf.egg-info/SOURCES.txt'\n"}
+[0.944631] (locnerf) StdoutLine: {'line': b'running build\n'}
+[0.944660] (locnerf) StdoutLine: {'line': b'running build_py\n'}
+[0.944685] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/build/locnerf/build\n'}
+[0.944710] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib\n'}
+[0.944734] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.944845] (locnerf) StdoutLine: {'line': b'copying locnerf/full_nerf_helpers.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.944912] (locnerf) StdoutLine: {'line': b'copying locnerf/full_filter.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.944943] (locnerf) StdoutLine: {'line': b'copying locnerf/render_helpers.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.944975] (locnerf) StdoutLine: {'line': b'copying locnerf/utils.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.945000] (locnerf) StdoutLine: {'line': b'copying locnerf/particle_filter.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.945024] (locnerf) StdoutLine: {'line': b'copying locnerf/nav_node.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.945063] (locnerf) StdoutLine: {'line': b'copying locnerf/__init__.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.945091] (locnerf) StdoutLine: {'line': b'copying locnerf/navigator_base.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf\n'}
+[0.945114] (locnerf) StdoutLine: {'line': b'running install\n'}
+[0.945272] (locnerf) StdoutLine: {'line': b'running install_lib\n'}
+[0.946052] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946123] (locnerf) StdoutLine: {'line': b'copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/full_nerf_helpers.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946155] (locnerf) StdoutLine: {'line': b'copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/full_filter.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946199] (locnerf) StdoutLine: {'line': b'copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/render_helpers.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946227] (locnerf) StdoutLine: {'line': b'copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/utils.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946252] (locnerf) StdoutLine: {'line': b'copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/particle_filter.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946291] (locnerf) StdoutLine: {'line': b'copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/nav_node.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946316] (locnerf) StdoutLine: {'line': b'copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/__init__.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946338] (locnerf) StdoutLine: {'line': b'copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/navigator_base.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf\n'}
+[0.946529] (locnerf) StdoutLine: {'line': b'byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/full_nerf_helpers.py to full_nerf_helpers.cpython-310.pyc\n'}
+[0.947625] (locnerf) StdoutLine: {'line': b'byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/full_filter.py to full_filter.cpython-310.pyc\n'}
+[0.948333] (locnerf) StdoutLine: {'line': b'byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/render_helpers.py to render_helpers.cpython-310.pyc\n'}
+[0.949965] (locnerf) StdoutLine: {'line': b'byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/utils.py to utils.cpython-310.pyc\n'}
+[0.951078] (locnerf) StdoutLine: {'line': b'byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/particle_filter.py to particle_filter.cpython-310.pyc\n'}
+[0.951151] (locnerf) StderrLine: {'line': b'  File "/home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/utils.py", line 356\n'}
+[0.951184] (locnerf) StderrLine: {'line': b'    """\n'}
+[0.951208] (locnerf) StderrLine: {'line': b'       ^\n'}
+[0.951229] (locnerf) StderrLine: {'line': b"SyntaxError: (unicode error) 'utf-8' codec can't decode byte 0xfc in position 36: invalid start byte\n"}
+[0.951250] (locnerf) StderrLine: {'line': b'\n'}
+[0.951533] (locnerf) StdoutLine: {'line': b'byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/nav_node.py to nav_node.cpython-310.pyc\n'}
+[0.953793] (locnerf) StdoutLine: {'line': b'byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/__init__.py to __init__.cpython-310.pyc\n'}
+[0.953856] (locnerf) StdoutLine: {'line': b'byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/navigator_base.py to navigator_base.cpython-310.pyc\n'}
+[0.954840] (locnerf) StdoutLine: {'line': b'running install_data\n'}
+[0.954905] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/ament_index\n'}
+[0.954929] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/ament_index/resource_index\n'}
+[0.954952] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/ament_index/resource_index/packages\n'}
+[0.954975] (locnerf) StdoutLine: {'line': b'copying resource/locnerf -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/ament_index/resource_index/packages\n'}
+[0.955012] (locnerf) StdoutLine: {'line': b'copying package.xml -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf\n'}
+[0.955037] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/cfg\n'}
+[0.955060] (locnerf) StdoutLine: {'line': b'copying cfg/jackal.yaml -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/cfg\n'}
+[0.955092] (locnerf) StdoutLine: {'line': b'copying cfg/llff.yaml -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/cfg\n'}
+[0.955132] (locnerf) StdoutLine: {'line': b'copying cfg/llff_global.yaml -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/cfg\n'}
+[0.955157] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/launch\n'}
+[0.955179] (locnerf) StdoutLine: {'line': b'copying launch/navigate_launch.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/launch\n'}
+[0.955202] (locnerf) StdoutLine: {'line': b'creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/rviz\n'}
+[0.955237] (locnerf) StdoutLine: {'line': b'copying rviz/rviz.rviz -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/rviz\n'}
+[0.955260] (locnerf) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.955986] (locnerf) StdoutLine: {'line': b'Copying build/locnerf/locnerf.egg-info to /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf-0.1.0-py3.10.egg-info\n'}
+[0.956258] (locnerf) StdoutLine: {'line': b'running install_scripts\n'}
+[0.966274] (locnerf) StdoutLine: {'line': b'Installing nav_node script to /home/student/catkin_ws/src/locnerf/install/locnerf/lib/locnerf\n'}
+[0.966422] (locnerf) StdoutLine: {'line': b"writing list of installed files to '/home/student/catkin_ws/src/locnerf/build/locnerf/install.log'\n"}
+[0.978098] (locnerf) CommandEnded: {'returncode': 0}
+[1.002455] (-) TimerEvent: {}
+[1.004325] (locnerf) JobEnded: {'identifier': 'locnerf', 'rc': 0}
+[1.005135] (-) EventReactorShutdown: {}
