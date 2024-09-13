@@ -39,8 +39,8 @@ nav_node:
     rgb_topic: /camera_d455/color/image_raw
     vio_topic: /vins_estimator/odometry
     focal: 1150
-    H: 128
-    W: 128
+    H: 224
+    W: 224
     near: 0
     far: 8
     min_bounds:
