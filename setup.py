@@ -11,8 +11,8 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/cfg', [
-            'cfg/jackal.yaml',
-            'cfg/llff.yaml',
+            'cfg/turtle.yaml',
+            'cfg/nerfstudio.yaml',
             'cfg/llff_global.yaml',
              ]),
         ('share/' + package_name + '/launch', [
