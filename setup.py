@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'MclSplat'
+package_name = 'mclsplat'
 
 setup(
     name=package_name,
@@ -34,7 +34,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'nav_node = mclsplats.nav_node:main'
+            'nav_node = mclsplat.nav_node:main'
         ],
     },
 )
