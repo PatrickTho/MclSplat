@@ -27,14 +27,14 @@ setup(
     install_requires=['setuptools','rclpy',
         'gtsam','nerfstudio'],
     zip_safe=True,
-    maintainer='Dominic Maggio',
-    maintainer_email='drmaggio@mit.edu',
-    description='Run particle filter with NeRF and VIO',
+    maintainer='Patrick Thomasius',
+    maintainer_email='patrick_christian.thomasius@smail.th-koeln.de',
+    description='Run particle filter with Gaussian Splats',
     license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'nav_node = locnerf.nav_node:main'
+            'nav_node = mclsplats.nav_node:main'
         ],
     },
 )
