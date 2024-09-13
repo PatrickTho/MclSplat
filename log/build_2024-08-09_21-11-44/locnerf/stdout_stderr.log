@@ -1,0 +1,67 @@
+running egg_info
+creating build/locnerf/locnerf.egg-info
+writing build/locnerf/locnerf.egg-info/PKG-INFO
+writing dependency_links to build/locnerf/locnerf.egg-info/dependency_links.txt
+writing entry points to build/locnerf/locnerf.egg-info/entry_points.txt
+writing requirements to build/locnerf/locnerf.egg-info/requires.txt
+writing top-level names to build/locnerf/locnerf.egg-info/top_level.txt
+writing manifest file 'build/locnerf/locnerf.egg-info/SOURCES.txt'
+reading manifest file 'build/locnerf/locnerf.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'build/locnerf/locnerf.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/student/catkin_ws/src/locnerf/build/locnerf/build
+creating /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib
+creating /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+copying locnerf/full_nerf_helpers.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+copying locnerf/full_filter.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+copying locnerf/render_helpers.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+copying locnerf/utils.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+copying locnerf/particle_filter.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+copying locnerf/nav_node.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+copying locnerf/__init__.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+copying locnerf/navigator_base.py -> /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf
+running install
+running install_lib
+creating /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/full_nerf_helpers.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/full_filter.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/render_helpers.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/utils.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/particle_filter.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/nav_node.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/__init__.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+copying /home/student/catkin_ws/src/locnerf/build/locnerf/build/lib/locnerf/navigator_base.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf
+byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/full_nerf_helpers.py to full_nerf_helpers.cpython-310.pyc
+byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/full_filter.py to full_filter.cpython-310.pyc
+byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/render_helpers.py to render_helpers.cpython-310.pyc
+byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/utils.py to utils.cpython-310.pyc
+byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/particle_filter.py to particle_filter.cpython-310.pyc
+  File "/home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/utils.py", line 356
+    """
+       ^
+SyntaxError: (unicode error) 'utf-8' codec can't decode byte 0xfc in position 36: invalid start byte
+
+byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/nav_node.py to nav_node.cpython-310.pyc
+byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf/navigator_base.py to navigator_base.cpython-310.pyc
+running install_data
+creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/ament_index
+creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/ament_index/resource_index
+creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/ament_index/resource_index/packages
+copying resource/locnerf -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/ament_index/resource_index/packages
+copying package.xml -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf
+creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/cfg
+copying cfg/jackal.yaml -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/cfg
+copying cfg/llff.yaml -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/cfg
+copying cfg/llff_global.yaml -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/cfg
+creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/launch
+copying launch/navigate_launch.py -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/launch
+creating /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/rviz
+copying rviz/rviz.rviz -> /home/student/catkin_ws/src/locnerf/install/locnerf/share/locnerf/rviz
+running install_egg_info
+Copying build/locnerf/locnerf.egg-info to /home/student/catkin_ws/src/locnerf/install/locnerf/lib/python3.10/site-packages/locnerf-0.1.0-py3.10.egg-info
+running install_scripts
+Installing nav_node script to /home/student/catkin_ws/src/locnerf/install/locnerf/lib/locnerf
+writing list of installed files to '/home/student/catkin_ws/src/locnerf/build/locnerf/install.log'

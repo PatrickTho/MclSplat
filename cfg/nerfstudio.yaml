@@ -1,0 +1,110 @@
+nav_node:
+  ros__parameters:
+    #### main filtering flags ####
+    run_predicts: False
+    use_received_image: False
+    center_about_true_pose: False
+    use_weighted_avg: True
+    no_ndc: True
+
+    #### main update step params ####
+    factor: 1
+    course_samples: 64
+    fine_samples: 64
+    photometric_loss: sam
+    sampling_strategy: random
+    batch_size: 32
+    num_particles: 1000
+    #### dataset and weight loading ####
+    dataset_type: llff
+    ckpt_dir: /home/student/masterthesis_patrick/inerf-main/ckpts
+    data_dir: /home/student/masterthesis_patrick/inerf-main/data/archive/nerf_llff_data
+    model_name: /home/student/catkin_ws/outputs/unnamed/splatfacto/2024-09-06_184116/config.yml
+    use_nerfstudio_convention: True
+    #### convergence protection #####
+    use_convergence_protection: True
+    number_convergence_particles: 50
+    convergence_noise: 0.05
+
+    #### inerf comparison ####
+    run_inerf_compare: True
+    global_loc_mode: True
+    log_results: True
+    use_logged_start: False
+    log_prefix: use_annealing
+    log_directory: /home/student/catkin_ws/src/locnerf/logs/inerf_compare
+    forward_passes_limit: 20000
+
+    #### custom data realtime tracking mode params ####
+    rgb_topic: /camera_d455/color/image_raw
+    vio_topic: /vins_estimator/odometry
+    focal: 1150
+    H: 128
+    W: 128
+    near: 0
+    far: 8
+    min_bounds:
+      px: -0.5
+      py: -0.3
+      pz: 0.0
+      rz: -2.5
+      ry: -179.0
+      rx: -2.5
+    max_bounds:
+      px: 0.5
+      py: 0.2
+      pz: 3.5
+      rz: 2.5
+      ry: 179.0
+      rx: 2.5
+    R_bodyVins_camNerf:
+      rz: 0.0
+      ry: 0.0
+      rx: 3.14159256
+
+    #### Nerf Navigation comparison ####
+    run_nerfnav_compare: False
+    nerf_nav_directory: /home/dominic/Downloads/input_data1
+
+    #### particle annealing params ####
+    use_refining: Yes
+    use_particle_reduction: Yes
+    min_number_particles: 200
+    alpha_refine: 0.08
+    alpha_super_refine: 0.015
+
+    #### motion model noise params ####
+    # position noise
+    px_noise: 0.04
+    py_noise: 0.02
+    pz_noise: 0.04
+    # rotation noise
+    rot_x_noise: 0.03
+    rot_y_noise: 0.05
+    rot_z_noise: 0.01
+
+
+    ##### visualization params #####
+    visualize_particles: True
+    view_debug_image_iteration: 0
+
+    ####### DO NOT CHANGE THESE UNLESS YOU KNOW WHAT YOU ARE DOING ########
+    multires: 10
+    multires_views: 4
+    i_embed: 0
+    netdepth: 8
+    netwidth: 256
+    netdepth_fine: 8
+    netwidth_fine: 256
+    use_viewdirs: True
+    perturb: 0
+    white_bkgd: False
+    raw_noise_std: 1.0
+    lindisp: False
+    chunk: 65536
+    netchunk: 65536
+    bd_factor: 0.75
+    kernel_size: 3
+    lrate: 0.01
+    dil_iter: 3
+
