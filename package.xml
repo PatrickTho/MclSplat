@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>locnerf</name>
-  <version>0.1.0</version>
-  <description>Run particle filter with NeRF and VIO</description>
+  <name>MclSplat</name>
+  <version>0.0.1</version>
+  <description>Run particle filter with Gaussian Splats</description>
 
-  <maintainer email="drmaggio@mit.edu">Dominic Maggio</maintainer>
+  <maintainer email="patrick_christian.thomasius@smail.th-koeln.de">Patrick Thomasius</maintainer>
 
   <license>MIT</license>
 
