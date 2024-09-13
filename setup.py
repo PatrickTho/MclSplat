@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'locnerf'
+package_name = 'MclSplat'
 
 setup(
     name=package_name,
