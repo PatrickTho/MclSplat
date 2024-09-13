@@ -14,16 +14,16 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'parameter_file',
             default_value=os.path.join(
-                get_package_share_directory('locnerf'),
+                get_package_share_directory('mclsplat'),
                 'cfg',
-                'jackal.yaml'  # Default file name
+                'nerfstudio.yaml'  # Default file name
             ),
             description='Path to the parameter file'
         ),
         
         # Load parameters from the specified YAML file
         Node(
-            package='locnerf',
+            package='mclsplat',
             executable='nav_node',  # Use the executable name without .py
             name='nav_node',
             output='screen',
