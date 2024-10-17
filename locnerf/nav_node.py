@@ -80,7 +80,8 @@ class Navigator(NavigatorBase):
         print(self.run_inerf_compare)
         # Set initial distribution of particles.
        # self.get_logger().info(f"dataset name" + dataset_name)
-
+        
+        #TODO currently hardcoded for faster access, switch back to parameters
         self.full_particles_logged = False
         self.full_particles_count = 0
         self.min_world_bounds = {
@@ -197,8 +198,7 @@ class Navigator(NavigatorBase):
     def get_initial_distribution(self):
         # NOTE for now assuming everything stays in NeRF coordinates (x right, y up, z inward)
         if self.run_inerf_compare:
-            print("SOMEHOW GOT INTO INERF COMPARE BRANCH")
-                        # for non-global loc mode, get random pose based on iNeRF evaluation method from their paper
+            # for non-global loc mode, get random pose based on iNeRF evaluation method from their paper
             # sample random axis from unit sphere and then rotate by a random amount between [-40, 40] degrees
             # translate along each axis by a random amount between [-10, 10] cm
             rot_rand = 40.0
@@ -236,7 +236,7 @@ class Navigator(NavigatorBase):
                     np.save(f, np.array([euler[0], euler[1], euler[2], t_x, t_y, t_z]))
 
             if self.global_loc_mode:
-                print("IN GLOBAL LOC MODE!!", flush=True)
+                #print("IN GLOBAL LOC MODE!!", flush=True)
                 # 360 degree rotation distribution about yaw
                 self.initial_particles_noise = np.random.uniform(np.array(
                 [self.min_world_bounds_nerfstudio['px'], self.min_world_bounds_nerfstudio['py'], self.min_world_bounds_nerfstudio['pz'], self.min_world_bounds_nerfstudio['rx'], self.min_world_bounds_nerfstudio['ry'], self.min_world_bounds_nerfstudio['rz']]),
@@ -268,30 +268,22 @@ class Navigator(NavigatorBase):
                  
                  
                 """ 
-                print("not working rn ", flush = True)
+                print("This code is not used anymore in the current Version ", flush = True)
          # get distribution of particles from user
         else: 
            
-            #self.initial_particles_noise = np.random.uniform(np.array(
-            #    [self.min_bounds['px'], self.min_bounds['py'], self.min_bounds['pz'], self.min_bounds['rz'], self.min_bounds['ry'], self.min_bounds['rx']]),
-            #    np.array([self.max_bounds['px'], self.max_bounds['py'], self.max_bounds['pz'], self.max_bounds['rz'], self.max_bounds['ry'], self.max_bounds['rx']]),
-            #    size = (self.num_particles, 6))
-            #print("Rot3 Ypr Test", flush=True)
-            #test = gtsam.Pose3(gtsam.Rot3.RzRyRx( np.pi, 50*np.pi/180 , np.pi), gtsam.Point3(0,0,0))
-            #print(test, flush=True)
             self.initial_particles_noise = np.random.uniform(np.array(
                 [self.min_world_bounds['px'], self.min_world_bounds['py'], self.min_world_bounds['pz'], self.min_world_bounds['rx'], self.min_world_bounds['ry'], self.min_world_bounds['rz']]),
                 np.array([self.max_world_bounds['px'], self.max_world_bounds['py'], self.max_world_bounds['pz'], self.max_world_bounds['rx'], self.max_world_bounds['ry'], self.max_world_bounds['rz']]),
                 size = (self.num_particles, 6))
         self.initial_particles = self.set_initial_particles()
-        #TODO here the magic happens
+        #here the particles first get initialized
 
 
-        #
         self.filter = ParticleFilter(self.initial_particles)
 
 
-    #needs to be adjusted for turtlebot 4
+    #needs to be adjusted for the respective Robot
     def vio_callback(self, msg):
         if self.odom_counts ==0:
             print("VIO CALLBACK!!!", flush=True)
@@ -303,7 +295,6 @@ class Navigator(NavigatorBase):
             rx = self.R_bodyVins_camNerf['rx']
             ry = self.R_bodyVins_camNerf['ry']
             rz = self.R_bodyVins_camNerf['rz']
-            #most likely order can be changed xyz
             #BIG PROBLEM WITH THIS
             #T_bodyVins_camNerf = gtsam.Pose3(gtsam.Rot3.Ypr(rz, ry, rx), gtsam.Point3(0,0,0))
             bodyvins_rot = rot_psi(rz)  @ rot_theta(ry)@ rot_phi(rx) 
@@ -313,7 +304,6 @@ class Navigator(NavigatorBase):
             T_bodyVins_camNerf = gtsam.Pose3(vins)
             #This is probably causing trouble. It seems like the roation and quats are in a different coordinate system. ?
             T_wVins_camVins = gtsam.Pose3(gtsam.Rot3(quat.w, quat.x, quat.y, quat.z), gtsam.Point3(position.x, position.y, position.z))
-            #okay so here the pose is logged in gtsam fomr
             #T_wVins_camNeRF = gtsam.Pose3(T_wVins_camVins.matrix() @ T_bodyVins_camNerf.matrix())
 
 
@@ -359,20 +349,6 @@ class Navigator(NavigatorBase):
         particles_position_before_update = np.copy(self.filter.particles['position'])
         particles_rotation_before_update = [gtsam.Rot3(i.matrix()) for i in self.filter.particles['rotation']]
 
-        #Weird code for nerfstudio conventions
-        """
-        quaternions = []
-        for index, rotation in enumerate(particles_rotation_before_update):
-            quaternion = rotation.toQuaternion()
-            x = quaternion.w()
-            y = -quaternion.z()
-            z = quaternion.y()
-            w = quaternion.x()
-            updated_rot = gtsam.Rot3.Quaternion(w, x, y, z) 
-            particles_rotation_before_update[index]=updated_rot
-                # Apply the transformation: x=w, y=-z, z=y, w=x-z
-
-        """
         if self.use_convergence_protection:
             for i in range(self.number_convergence_particles):
                 t_x = np.random.uniform(low=-self.convergence_noise, high=self.convergence_noise)
@@ -393,27 +369,13 @@ class Navigator(NavigatorBase):
 
 
             #img = cv2.resize(self.br.imgmsg_to_cv2(msg), (int(self.nerf.W), int(self.nerf.H)))
-
-            #HIER EVTL UMFORMEN!!!
-            #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-            #probably not needed
             self.nerf.obs_img = img
-            #print(img.shape)
-            #likely needs normalization procedure
-            #self.nerf.obs_img_noised = (np.array(self.obs_img) / 255.0).astype(np.float32)
+
             self.nerf.obs_img_noised = img
             show_true = self.view_debug_image_iteration != 0 and self.num_updates == self.view_debug_image_iteration-1
-            #TODO check
-            #probably unnecessary
-            #self.nerf.get_poi_interest_regions(show_true, self.sampling_strategy)
-            # plt.imshow(self.nerf.obs_img)
-            # plt.show()
+
 
         total_nerf_time = 0
-
-        #if self.sampling_strategy == 'random':
-        #rand_inds = np.random.choice(self.nerf.coords.shape[0], size=self.nerf.batch_size, replace=False)
-        #batch = self.nerf.coords[rand_inds]
 
         loss_poses = []
         for index, particle in enumerate(particles_position_before_update):
@@ -428,15 +390,11 @@ class Navigator(NavigatorBase):
             loss_poses_np = np.array(loss_poses)
             loss_poses_np = loss_poses_np.astype(np.float32)
             loss_poses_tensor = torch.from_numpy(loss_poses_np)
-            #is this causing issues????
             loss_poses_tensor = loss_poses_tensor.to(device)
-        #TODO batch probably not needed here??
-        #also this is a different method then inerf compare.. which means we might have to switch it out and do the same method as in llff    
         # todo pass in pixel_amount 
         losses, nerf_time = self.nerf.get_loss(loss_poses_tensor, self.photometric_loss)
         
 
-        #TODO check if we need to update loss here??
         for index, particle in enumerate(particles_position_before_update):
             self.filter.weights[index] = 1/losses[index]
         total_nerf_time += nerf_time
@@ -453,7 +411,7 @@ class Navigator(NavigatorBase):
             avg_pose = self.filter.compute_weighted_position_average()
         else:
             avg_pose = self.filter.compute_simple_position_average()
-            print("THADAAA THIS IS IT!!")
+            print("avg pose:")
             print(avg_pose)
         avg_rot = self.filter.compute_simple_rotation_average()
         self.nerf_pose = gtsam.Pose3(avg_rot, gtsam.Point3(avg_pose[0], avg_pose[1], avg_pose[2])).matrix()
@@ -825,47 +783,6 @@ def main(args=None):
             rclpy.shutdown()
 
 
-
-    # publish pose
-"""
-def visualize(self):
-    # publish pose array of particles' poses
-    poses = []
-    R_nerf_body = gtsam.Rot3.Rx(-np.pi/2)
-    for index, particle in enumerate(self.filter.particles['particles']['position']): 
-        p = Pose()
-        p.position.x = particle[0]
-        p.position.y = particle[1]
-        p.position.z = particle[2]
-        rot = self.filter.particles['rotation'][index]
-        orient = rot.quaternion()
-        p.orientation.w = orient[0]
-        p.orientation.x = orient[1]
-        p.orientation.y = orient[2]
-        p.orientation.z = orient[3]
-        poses.append(p)
-        
-    pa = PoseArray()
-    pa.poses = poses
-    pa.header.frame_id = "world"
-    particle_pub.publish(pa)
-
-    # if we have a ground truth pose then publish it
-    if gt_pose is not None:
-        gt_array = PoseArray()
-        gt = Pose()
-        gt_rot = gtsam.Rot3(gt_pose[0:3, 0:3]).quaternion()
-        gt.orientation.w = gt_rot[0]
-        gt.orientation.x = gt_rot[1]
-        gt.orientation.y = gt_rot[2]
-        gt.orientation.z = gt_rot[3]
-        gt.position.x = gt_pose[0, 3]
-        gt.position.y = gt_pose[1, 3]
-        gt.position.z = gt_pose[2, 3]
-        gt_array.poses = [gt]
-        gt_array.header.frame_id = "world"
-        gt_pub.publish(gt_array)
-"""
 
 
 
