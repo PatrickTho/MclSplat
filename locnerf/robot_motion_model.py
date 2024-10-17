@@ -72,7 +72,10 @@ def sample_odom_motion_model(prev_true_xt: Pose,
 
     #todo hier vl -d1 # noch weiter gesagt sind vl cos und sin vertauscht..
     x = curr_x + t_dt * cos(curr_yaw + d1)
-    z = curr_z + t_dt * sin(curr_yaw + d1)
+    # THIS IS CHANGED TO MINUS BECAUSE OF THE COORDINATES OF NERFSTUDIO
+    
+    #todo, make this a param for different conventions, important!!
+    z = curr_z - t_dt * sin(curr_yaw + d1)
     yaw = curr_yaw + d1 + d2
 
     position = Point(x=x, y=curr_y, z=z)
