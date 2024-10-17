@@ -65,30 +65,9 @@ class NavigatorBase(Node):
         self.declare_parameter('visualize_particles', False)
         self.declare_parameter('rgb_topic', 'default')
         self.declare_parameter('vio_topic', 'default')
-        self.declare_parameter('near', 0)
-        self.declare_parameter('far', 0)
-        self.declare_parameter('course_samples', 0)
-        self.declare_parameter('fine_samples', 0)
+
         self.declare_parameter('batch_size', 0)
-        self.declare_parameter('kernel_size', 0)
-        self.declare_parameter('lrate', 0.0)
-        self.declare_parameter('sampling_strategy', 'default')
-        self.declare_parameter('no_ndc', False)
-        self.declare_parameter('dil_iter', 0)
-        self.declare_parameter('multires', 0)
-        self.declare_parameter('multires_views', 0)
-        self.declare_parameter('i_embed', 0)
-        self.declare_parameter('netwidth', 0)
-        self.declare_parameter('netdepth', 0)
-        self.declare_parameter('netdepth_fine', 0)
-        self.declare_parameter('netwidth_fine', 0)
-        self.declare_parameter('use_viewdirs', False)
-        self.declare_parameter('perturb', 0)
-        self.declare_parameter('white_bkgd', False)
-        self.declare_parameter('raw_noise_std', 0.00)
-        self.declare_parameter('lindisp', False)
-        self.declare_parameter('netchunk', 0)
-        self.declare_parameter('chunk', 0)
+
         self.declare_parameter('bd_factor', 0.00)
         self.declare_parameter('use_nerfstudio_convention', False)
         self.declare_parameter('log_prefix', 'default')
@@ -122,8 +101,6 @@ class NavigatorBase(Node):
         self.declare_parameter('use_received_image', False)
         self.declare_parameter('run_inerf_compare')
         self.declare_parameter('global_loc_mode', False)
-        self.declare_parameter('run_nerfnav_compare').get_parameter_value().bool_value
-        self.declare_parameter('nerf_nav_directory').get_parameter_value().string_value
         self.declare_parameter('center_about_true_pose', False)
         self.declare_parameter('use_refining', False)
         self.declare_parameter('log_results', False)
@@ -140,37 +117,15 @@ class NavigatorBase(Node):
         self.plot_particles  = self.get_parameter('visualize_particles').get_parameter_value().bool_value
         self.rgb_topic = self.get_parameter('rgb_topic').get_parameter_value().string_value
         self.pose_topic = self.get_parameter('vio_topic').get_parameter_value().string_value
-        self.near = self.get_parameter('near').get_parameter_value().integer_value
-        self.far = self.get_parameter('far').get_parameter_value().integer_value
-        self.course_samples = self.get_parameter('course_samples').get_parameter_value().integer_value
-        self.fine_samples = self.get_parameter('fine_samples').get_parameter_value().integer_value
+
         self.batch_size = self.get_parameter('batch_size').get_parameter_value().integer_value
-        self.kernel_size = self.get_parameter('kernel_size').get_parameter_value().integer_value
-        self.lrate = self.get_parameter('lrate').get_parameter_value().double_value
-        self.sampling_strategy = self.get_parameter('sampling_strategy').get_parameter_value().string_value
-        self.no_ndc = self.get_parameter('no_ndc').get_parameter_value().bool_value
-        self.dil_iter = self.get_parameter('dil_iter').get_parameter_value().integer_value
-        self.multires = self.get_parameter('multires').get_parameter_value().integer_value
-        self.multires_views = self.get_parameter('multires_views').get_parameter_value().integer_value
-        self.i_embed = self.get_parameter('i_embed').get_parameter_value().integer_value
-        self.netwidth = self.get_parameter('netwidth').get_parameter_value().integer_value
-        self.netdepth = self.get_parameter('netdepth').get_parameter_value().integer_value
-        self.netdepth_fine = self.get_parameter('netdepth_fine').get_parameter_value().integer_value
-        self.netwidth_fine = self.get_parameter('netwidth_fine').get_parameter_value().integer_value
-        self.use_viewdirs = self.get_parameter('use_viewdirs').get_parameter_value().bool_value
-        self.perturb = self.get_parameter('perturb').get_parameter_value().integer_value
-        self.white_bkgd = self.get_parameter('white_bkgd').get_parameter_value().bool_value
-        self.raw_noise_std = self.get_parameter('raw_noise_std').get_parameter_value().double_value
-        self.lindisp = self.get_parameter('lindisp').get_parameter_value().bool_value
-        self.netchunk = self.get_parameter('netchunk').get_parameter_value().integer_value
-        self.chunk = self.get_parameter('chunk').get_parameter_value().integer_value
+
         self.bd_factor = self.get_parameter('bd_factor').get_parameter_value().double_value
-        self.use_nerfstudio_convention = self.get_parameter('use_nerfstudio_convention').get_parameter_value().bool_value
-        self.log_prefix = self.get_parameter('log_prefix').get_parameter_value().string_value
+
 
         # just used for Nerf-Navigation comparison
-        self.model_ngp = None
-        self.ngp_opt = None
+        #self.model_ngp = None
+        #self.ngp_opt = None
         #Dataset_name is None unfortunately
         #self.get_logger().info(f'this is the current dataset_name' + dataset_name)
         #if dataset_name is not None:
@@ -189,11 +144,8 @@ class NavigatorBase(Node):
         nerf_params = {'near':self.near, 'far':self.far, 'course_samples':self.course_samples, 'fine_samples':self.fine_samples,
                        'batch_size':self.batch_size, 'factor':self.factor, 'focal':self.focal, 'H':self.H, 'W':self.W, 'dataset_type':self.dataset_type,
                        'obs_img_num':self.obs_img_num, 'kernel_size':self.kernel_size, 'lrate':self.lrate, 'sampling_strategy':self.sampling_strategy,
-                       'model_name':self.model_name, 'data_dir':self.data_dir, 'no_ndc':self.no_ndc, 'dil_iter':self.dil_iter,
-                       'multires':self.multires, 'multires_views':self.multires_views, 'i_embed':self.i_embed, 'netwidth':self.netwidth, 'netdepth':self.netdepth,
-                       'netdepth_fine':self.netdepth_fine, 'netwidth_fine':self.netwidth_fine, 'use_viewdirs':self.use_viewdirs, 'ckpt_dir':self.ckpt_dir,
-                       'perturb':self.perturb, 'white_bkgd':self.white_bkgd, 'raw_noise_std':self.raw_noise_std, 'lindisp':self.lindisp,
-                       'netchunk':self.netchunk, 'chunk':self.chunk, 'bd_factor':self.bd_factor, 'use_nerfstudio_convention': self.use_nerfstudio_convention}
+                       'model_name':self.model_name, 'data_dir':self.data_dir,  'ckpt_dir':self.ckpt_dir,
+                        'bd_factor':self.bd_factor, 'use_nerfstudio_convention': self.use_nerfstudio_convention}
         self.nerf = NeRF(nerf_params)
         
         self.image = None
@@ -226,8 +178,6 @@ class NavigatorBase(Node):
         self.use_received_image = self.get_parameter('use_received_image').get_parameter_value().bool_value
         self.run_inerf_compare = self.get_parameter('run_inerf_compare').get_parameter_value().bool_value
         self.global_loc_mode = self.get_parameter('global_loc_mode').get_parameter_value().bool_value
-        self.run_nerfnav_compare = self.get_parameter('run_nerfnav_compare').get_parameter_value().bool_value
-        self.nerf_nav_directory = self.get_parameter('nerf_nav_directory').get_parameter_value().string_value
         self.center_about_true_pose = self.get_parameter('center_about_true_pose').get_parameter_value().bool_value
         self.use_refining = self.get_parameter('use_refining').get_parameter_value().bool_value
         self.log_results = self.get_parameter('log_results').get_parameter_value().bool_value
@@ -351,8 +301,3 @@ class NavigatorBase(Node):
         if self.alpha_super_refine > self.alpha_refine:
             warnings.warn("alpha_super_refine is larger than alpha_refine, code will run but they are probably flipped by the user")
         
-        if self.sampling_strategy != "random":
-            warnings.warn("did not enter a valid sampling strategy. Currently the following are supported: random")
-
-        if self.photometric_loss != "rgb":
-            warnings.warn("did not enter a valid photometric loss. Currently the following are supported: rgb")
