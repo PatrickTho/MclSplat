@@ -44,21 +44,21 @@ class NeRF:
         self.obs_img_num = nerf_params['obs_img_num']
         self.batch_size = nerf_params['batch_size']
         self.factor = nerf_params['factor']
-        self.near = nerf_params['near']
-        self.far = nerf_params['far']
+        #self.near = nerf_params['near']
+        #self.far = nerf_params['far']
         self.spherify = False
-        self.kernel_size = nerf_params['kernel_size']
-        self.lrate = nerf_params['lrate']
+        #self.kernel_size = nerf_params['kernel_size']
+        #self.lrate = nerf_params['lrate']
         self.dataset_type = nerf_params['dataset_type']
         self.sampling_strategy = nerf_params['sampling_strategy']
         self.delta_phi, self.delta_theta, self.delta_psi, self.delta_x, self.delta_y, self.delta_z = [0,0,0,0,0,0]
-        self.no_ndc = nerf_params['no_ndc']
-        self.dil_iter = nerf_params['dil_iter']
+        #self.no_ndc = nerf_params['no_ndc']
+        #self.dil_iter = nerf_params['dil_iter']
         #self.chunk = nerf_params['chunk'] # number of rays processed in parallel, decrease if running out of memory
         self.bd_factor = nerf_params['bd_factor']
 
         print("dataset type:", self.dataset_type)
-        print("no ndc:", self.no_ndc)
+        #print("no ndc:", self.no_ndc)
         #TODO WORK IN PROGRESS!! MODEL LOAD ONLY ONCE!!
         #TODO make sure to always load correct model confi. This needs to be a PARAM. In the LLFF dataset it must be supported to load every specific config per dataset.
         #load_config="/home/student/catkin_ws/outputs/unnamed/splatfacto/2024-08-22_193711/config.yml"
@@ -96,37 +96,11 @@ class NeRF:
             self.focal = 900
             print(self.obs_img_pose, flush=True)
 
-            if self.no_ndc:
-                self.near = 0.
-                self.far = 1.
-                #self.near = np.ndarray.min(self.bds) * .9
-                #self.far = np.ndarray.max(self.bds) * 1.
-                #print(self.near, self.far)
-            else:
-                self.near = 0.
-                self.far = 1.
             
             self.H, self.W = 224, 224
             self.obs_img = (np.array(self.obs_img)).astype(np.float32)
             self.obs_img_noised = self.obs_img
 
-            # create meshgrid from the observed image
-            self.coords = np.asarray(np.stack(np.meshgrid(np.linspace(0, self.W - 1, self.W), np.linspace(0, self.H - 1, self.H)), -1),
-                                dtype=int)
-
-            self.coords = self.coords.reshape(self.H * self.W, 2)
-        
-        # print("height, width, focal:", self.H, self.W, self.focal)
-
-        # Load NeRF Model
-        #self.render_kwargs = load_nerf(nerf_params, device)
-        #bds_dict = {
-        #    'near': self.near,
-        #    'far': self.far,
-        #}
-        #self.render_kwargs.update(bds_dict)
-
-        #??? THIS IS A DIFFERENt config THAN BEFORE??
         load_config = self.model_name
         #load_config = "/home/student/catkin_ws/outputs/unnamed/splatfacto/2024-09-06_184116/config.yml"
         #TODO make sure to always load correct model confi. This needs to be a PARAM. In the LLFF dataset it must be supported to load every specific config per dataset.
@@ -140,53 +114,7 @@ class NeRF:
                 test_mode="test",
                 
         )
-    
-    def get_poi_interest_regions(self, show_img=False, sampling_type = None):
-        # TODO see if other image normalization routines are better
-        self.obs_img_noised = (np.array(self.obs_img) / 255.0).astype(np.float32)
 
-        if show_img:
-            plt.imshow(self.obs_img_noised)
-
-        #all_rays_o = np.zeros((num_pixels,3))
-        #all_rays_d = np.zeros((num_pixels,3))
-
-        for i, particle in enumerate(particles):
-            pose = torch.Tensor(particle).to(device)
-            #render whole image and get RGB values. 
-            #TODO new logic this doesnt work at all
-            #rays_o, rays_d = get_rays(self.H, self.W, self.focal, pose) # TODO this line can be stored as a param
-            #rays_o = rays_o[batch[:, 1], batch[:, 0]]
-            #rays_d = rays_d[batch[:, 1], batch[:, 0]]
-            #all_rays_o[i*len(batch): i*len(batch) + len(batch),:] = rays_o.cpu().detach().numpy()
-            #all_rays_d[i*len(batch): i*len(batch) + len(batch),:] = rays_d.cpu().detach().numpy()
-
-        #all_rays_o = torch.Tensor(all_rays_o).to(device)
-        #all_rays_d = torch.Tensor(all_rays_d).to(device)
-        #batch_rays = torch.stack([all_rays_o, all_rays_d], 0)
-        
-        #TODO this functions renders the pixels. We need to change it to render the image. RGB is enough- we don't need depth or acc, we will only use photometric
-        #or extract features with a neural network.. 
-        rgb_all, disp, acc, extras = render(self.H, self.W, self.focal, chunk=self.chunk, rays=batch_rays,
-                                        retraw=True,
-                                        )
-        nerf_time = time.time() - start_time
-                   
-        # print(rgb_all)
-        # print()
-        # print(target_s)
-
-        losses = []
-        for i in range(len(particles)):
-            rgb = rgb_all[i*len(batch): i*len(batch) + len(batch)]
-            if photometric_loss == 'rgb':
-                loss = img2mse(rgb, target_s)
-
-            else:
-                # TODO throw an error
-                print("DID NOT ENTER A VALID LOSS METRIC")
-            losses.append(loss.item())
-        return losses, nerf_time
     
 
     def get_loss(self, particles, photometric_loss='rgb', save_camera = True):
@@ -200,9 +128,6 @@ class NeRF:
         num_pixels = len(particles) * batch
         #print(num_pixels)
 
-        #all_rays_o = np.zeros((num_pixels,3))load_config
-        #all_rays_d = np.zeros((num_pixels,3))
-        #all_pixels=[]
         
         
         rendered_pixels = render_new(
@@ -210,31 +135,7 @@ class NeRF:
             self.H, self.W, self.focal, c2w=particles,
                                         ndc=True)
 
-        #print("woopwopp")
-        #print(len(rendered_pixels[299][]))
-        #flattened_data = [value for sublist in rendered_pixels for row in sublist for value in row]
-        #print(rendered_pixels[0].shape)
-        #do without rays
-        """           rays_o, rays_d = get_rays(self.H, self.W, self.focal, pose) # TODO this line can be stored as a param
-            rays_o = rays_o[batch[:, 1], batch[:, 0]]
-            rays_d = rays_d[batch[:, 1], batch[:, 0]]
-            all_rays_o[i*len(batch): i*len(batch) + len(batch),:] = rays_o.cpu().detach().numpy()
-            all_rays_d[i*len(batch): i*len(batch) + len(batch),:] = rays_d.cpu().detach().numpy()
-
-        all_rays_o = torch.Tensor(all_rays_o).to(device)
-        all_rays_d = torch.Tensor(all_rays_d).to(device)
-        batch_rays = torch.stack([all_rays_o, all_rays_d], 0)
-        rgb_all, disp, acc, extras = render(self.H, self.W, self.focal, chunk=self.chunk, rays=batch_rays,
-                                        retraw=True,
-                                        **self.render_kwargs)
-        """                              
-        nerf_time = time.time() - start_time
-                   
-        # print(rgb_all)
-        # print()
-        # print(target_s)
-        #TODO refactor 
-        #TODO check losses format. 
+  
         losses = []
         #print(target_s.shape)
         #resize_transform = transforms.Resize((224, 224))
@@ -264,9 +165,9 @@ class NeRF:
         if photometric_loss != 'features':
             print(photometric_loss, flush=True)
 
-
+            # Use this method if you need to use CLAHE for different Lightning conditions
             #lab = cv2.cvtColor(resized_image, cv2.COLOR_BGR2LAB)
-           # lab_planes = cv2.split(lab)
+            # lab_planes = cv2.split(lab)
             #clahe = cv2.createCLAHE(clipLimit=2.0,tileGridSize=(8,8))
 
 
@@ -279,14 +180,11 @@ class NeRF:
             #resized_image = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
             #resized_image = torch.Tensor(img).to(device)
             for i in range(len(particles)):
-                #TODO check format of rendered pixels.     
                 rgb = rendered_pixels[i]
                 #print(len(rgb))
                 rgb = (rgb).astype(np.float32)
-                #resized_image = (resized_image).astype(np.float32)
                 #print(len(rgb))
                 #print(rgb.shape)
-                #print(resized_image.shape)
 
                 if photometric_loss == 'rgb':
 
@@ -344,16 +242,6 @@ class NeRF:
         #losses.append(loss.item())
         return losses, nerf_time
     
-    def visualize_nerf_image(self, nerf_pose):
-        pose_dummy = torch.from_numpy(nerf_pose).cuda()
-        with torch.no_grad():
-            print(nerf_pose)
-            rgb, disp, acc, _ = render(self.H, self.W, self.focal, chunk=self.chunk, c2w=pose_dummy[:3, :4], **self.render_kwargs)
-            rgb = rgb.cpu().detach().numpy()
-            rgb8 = to8b(rgb)
-            ref = to8b(self.obs_img)
-        plt.imshow(rgb8)
-        plt.show()
     
     def save_nerf_image(self, nerf_pose, update_num):
         bar = np.array(nerf_pose).astype(np.float32)
